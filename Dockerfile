@@ -1,5 +1,8 @@
 FROM python:3.14-rc-alpine3.21
 
+#used the below run from online as i was getting an error in building the dockerfile try using some other base image to make sure there is no issues.
+RUN apk add --no-cache gcc musl-dev python3-dev linux-headers
+
 WORKDIR /app
 
 COPY requirements.txt .
