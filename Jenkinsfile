@@ -1,9 +1,15 @@
 pipeline{
     agent any
-    environment{
-        DOCKER_TAG = '20250830'
-    }
+    
     stages{
+         stage('Set DOCKER_TAG') {
+            steps {
+                script {
+                    env.DOCKER_TAG = sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
+                    echo "DOCKER_TAG is set to ${env.DOCKER_TAG}"
+                }
+            }
+        }
         stage("clone repo"){
             steps{
                 git branch: 'main', url: 'https://github.com/Rohitdevops73/Python_application.git'
@@ -12,7 +18,7 @@ pipeline{
         stage('Build image'){
             steps{
                 script{
-                    sh 'docker build -t rohitkube/python_app:${DOCKER_TAG} .'
+                    sh 'docker build -t rohitkube/python_app:${env.DOCKER_TAG} .'
 
             }    
             }
@@ -20,7 +26,7 @@ pipeline{
         stage('Docker image scan'){
             steps{
                 script{
-                    sh 'trivy image --format table -o trivy-image-report.html rohitkube/python_app:${DOCKER_TAG}'
+                    sh 'trivy image --format table -o trivy-image-report.html rohitkube/python_app:${env.DOCKER_TAG}'
                 }
             }
         }
@@ -36,7 +42,7 @@ pipeline{
         stage('Push Docker image'){
             steps{
                 script{
-                    sh 'docker push rohitkube/python_app:${DOCKER_TAG}'
+                    sh 'docker push rohitkube/python_app:${env.DOCKER_TAG}'
                 }
             }
         }
