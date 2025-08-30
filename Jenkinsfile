@@ -60,7 +60,7 @@ pipeline{
                         git config user.name "${GIT_USER_NAME}"
 
                         # Update deployment.yml with the correct Docker image version (Build Number)
-                        sed -i "s|image: ${DOCKER_IMAGE}:[^ ]*|image: ${DOCKER_IMAGE}:${DOCKER_TAG}|g" deployment.yml
+                        sed -i "s|image: ${DOCKER_IMAGE}:[^ ]*|image: ${DOCKER_IMAGE}:${DOCKER_TAG}|g" argocd-manifest/deployment.yml
 
                         # Commit and push the updated deployment file
                         git add deployment.yml
