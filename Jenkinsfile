@@ -5,16 +5,10 @@ pipeline{
         DOCKER_IMAGE = "rohitkube/python_app"
         GIT_USER_NAME = "Rohitdevops73"
         GIT_REPO_NAME = "Python_application"
+        DOCKER_TAG = "${BUILD_NUMBER}"
     }
     stages{
-         stage('Set DOCKER_TAG') {
-            steps{
-                script{
-                    DOCKER_TAG = sh(returnStdout: true, script: 'date +%Y%m%d').trim()
-                    echo "DOCKER_TAG is set to ${DOCKER_TAG}"
-                }
-            }
-        }
+         
         stage("clone repo"){
             steps{
                 git branch: 'main', url: 'https://github.com/Rohitdevops73/Python_application.git'
