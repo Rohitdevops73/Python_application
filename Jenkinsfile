@@ -1,5 +1,3 @@
-def DOCKER_TAG = ''
-
 pipeline{
     agent any
     
@@ -20,7 +18,7 @@ pipeline{
         stage('Build image'){
             steps{
                 script{
-                    sh 'docker build -t rohitkube/python_app:${DOCKER_TAG} .'
+                    sh "docker build -t rohitkube/python_app:${DOCKER_TAG} ."
 
             }    
             }
@@ -28,7 +26,7 @@ pipeline{
         stage('Docker image scan'){
             steps{
                 script{
-                    sh 'trivy image --format table -o trivy-image-report.html rohitkube/python_app:${DOCKER_TAG}'
+                    sh "trivy image --format table -o trivy-image-report.html rohitkube/python_app:${DOCKER_TAG}"
                 }
             }
         }
@@ -44,7 +42,7 @@ pipeline{
         stage('Push Docker image'){
             steps{
                 script{
-                    sh 'docker push rohitkube/python_app:${DOCKER_TAG}'
+                    sh "docker push rohitkube/python_app:${DOCKER_TAG}"
                 }
             }
         }
