@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage("clone repo"){
             steps{
-                git branch: 'main': 'https://github.com/Rohitdevops73/Python_application.git'
+                git branch: 'main', url: 'https://github.com/Rohitdevops73/Python_application.git'
             }
         }
         stage('Build image'){
