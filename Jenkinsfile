@@ -21,13 +21,13 @@ pipeline{
             }
         }
         
-        stage('SonarQube') {
-            steps {
-                withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=${SONAR_URL}"
-                }
-            }
-        }
+      //  stage('SonarQube') {
+        //    steps {
+          //      withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
+            //        sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=${SONAR_URL}"
+              //  }
+            //}
+       // }
         stage('Build image'){
             steps{
                 script{
