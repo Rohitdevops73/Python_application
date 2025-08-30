@@ -24,10 +24,10 @@ pipeline{
         stage('SonarQube') {
             steps {
                 withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
-                    sh """
-                    sonar-scanner -Dsonar.login=$SONAR_TOKEN \
-                         -Dsonar.host.url=${SONAR_URL} \
-                    """
+                    sh '''
+                      sonar-scanner -Dsonar.login=$SONAR_TOKEN \
+                            -Dsonar.host.url=${SONAR_URL} \
+                    '''
                 }
             }
         }
