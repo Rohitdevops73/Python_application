@@ -63,7 +63,7 @@ pipeline{
                         sed -i "s|image: ${DOCKER_IMAGE}:[^ ]*|image: ${DOCKER_IMAGE}:${DOCKER_TAG}|g" argocd-manifest/deployment.yml
 
                         # Commit and push the updated deployment file
-                        git argocd-manifest/deployment.yml
+                        git add argocd-manifest/deployment.yml
                         git commit -m "Update deployment image to version ${DOCKER_TAG}"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                     '''
