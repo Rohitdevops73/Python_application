@@ -17,18 +17,18 @@ spec:
         image: rohitkube/python_app:34
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 5000
         # Adding health checks (customize the path and port as needed)
         livenessProbe:
           httpGet:
             path: /health
-            port: 8080
+            port: 5000
           initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /health
-            port: 8080
+            port: 5000
           initialDelaySeconds: 10
           periodSeconds: 5
         resources:
@@ -49,5 +49,5 @@ spec:
   ports:
   - protocol: "TCP"
     port: 80
-    targetPort: 8080
+    targetPort: 5000
   type: LoadBalancer
