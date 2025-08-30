@@ -13,6 +13,8 @@ COPY . .
 
 ENV FLASK_RUN_HOST=0.0.0.0
 
-EXPOSE 5000
+ENV FLASK_APP=app.py
+
+EXPOSE 8080
 
 CMD ["flask", "run"]
