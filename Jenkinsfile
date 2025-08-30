@@ -1,9 +1,15 @@
 pipeline{
     agent any
-    environment{
-        DOCKER_TAG = sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
-    }
+   
     stages{
+         stage('Set DOCKER_TAG') {
+            steps {
+                script {
+                    env.DOCKER_TAG = sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
+                    echo "DOCKER_TAG is set to ${env.DOCKER_TAG}"
+                }
+            }
+        }
         stage("clone repo"){
             steps{
                 git branch: 'main', url: 'https://github.com/Rohitdevops73/Python_application.git'
@@ -14,8 +20,7 @@ pipeline{
                 script{
                     sh 'docker build -t python_app:${env.DOCKER_TAG} .'
 
-            }
-                
+            }    
             }
         }
         stage('Docker image scan'){
