@@ -1,3 +1,5 @@
+def DOCKER_TAG = ''
+
 pipeline{
     agent any
     
