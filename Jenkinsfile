@@ -11,7 +11,11 @@ pipeline{
         }
         stage('Build image'){
             steps{
-                sh 'docker build -t python_app:${env.DOCKER_TAG} .'
+                script{
+                    sh 'docker build -t python_app:${env.DOCKER_TAG} .'
+
+            }
+                
             }
         }
         stage('Docker image scan'){
