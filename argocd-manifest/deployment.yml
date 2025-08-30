@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: fullstack
-        image: rohitkube/python_app:39
+        image: rohitkube/python_app:40
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
