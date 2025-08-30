@@ -5,7 +5,7 @@ pipeline{
          stage('Set DOCKER_TAG') {
             steps {
                 script {
-                    env.DOCKER_TAG = sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
+                    env.DOCKER_TAG = sh(returnStdout: true, script: 'date +%Y%m%d').trim()
                     echo "DOCKER_TAG is set to ${env.DOCKER_TAG}"
                 }
             }
